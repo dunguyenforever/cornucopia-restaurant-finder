@@ -1,4 +1,4 @@
-# Athena Appetite (Temporary Name)
+# Cornucopia
 ## Product Proposal
 ### Vision 
 
