@@ -46,6 +46,5 @@ Due to the scope and the amount of work that is going to go into this project, a
 
 + A big concern for how we are going to acquire such a massive volume of free space for data storage without offering monetary compensation is also a large roadblock that we woul have to consider.
 
-+ There is also the novelty of our idea going against the general norm, so the overall desirability and success of our website will not be guarantee
-I want my topic to be about "How to get good at fighting game"I want my topic to be about "How to get good at fighting game"I want my topic to be about "How to get good at fighting game"I want my topic to be about "How to get good at fighting game"I want my topic to be about "How to get good at fighting game"I want my topic to be about "How to get good at fighting game"
++ There is also the novelty of our idea going against the general norm, so the overall desirability and success of our website will not be guaranteed
 
