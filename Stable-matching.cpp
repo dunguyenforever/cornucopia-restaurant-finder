@@ -108,9 +108,9 @@ void stableMatching(int prefs[2*N][N])
 
     // Print the solution
     cout << "Best matching:\n-----------------------------------------------------------\n";
-    cout << "Woman  <->  Man" << endl;
+    cout << "Woman  <->\t  Man" << endl;
     for (int i = 0; i < N; i++)
-       cout << " " << namelist[i+N] << "\t" << namelist[wDates[i]] << endl;
+       cout << namelist[i+N] << "\t\t" << namelist[wDates[i]] << endl;
 
 
 }
@@ -134,8 +134,8 @@ void showPreftable(int prefs[2*N][N])
 
     int i, j = 0;
     //Iterating through the list
-    cout << "Date name\t\t\t\t" << "1st choice\t\t\t\t" << "2nd choice\t\t\t\t"<< "3rd choice\t\t\t\t"<< "4th choice\t\t\t\t" << "5th choice\n";
-    cout << "-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
+    cout << "Date name\t\t\t" << "1st choice\t\t\t" << "2nd choice\t\t\t"<< "3rd choice\t\t\t"<< "4th choice\t\t\t" << "5th choice\n";
+    cout << "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
     for(i; i < 2*N; i++)
     {
         //Matching the name of the dates with its index
@@ -183,7 +183,7 @@ void getNames()
     cout << "Let's start with the first 5 male dates:\n";
     while( count < N)
     {
-        cout << "Male Date " << count + 1 << " name:";
+        cout << "Date " << count + 1 << " name:";
         cin >> namelist[count];
         cout << "\n";
         count++;
@@ -191,7 +191,7 @@ void getNames()
     cout << "Now for our 5 female dates:\n";
     while( count < 2*N)
     {
-        cout << "Female Date " << count + 1 << " name:";
+        cout << "Date " << count + 1 << " name:";
         cin >> namelist[count];
         cout << "\n";
         count++;
