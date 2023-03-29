@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content=" IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- this line above is used to let the page adjust upto device -->
+        <title>Vue Basics</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://unpkg.com/vue@3"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">My Vue</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li v-for="(page,index) in pages" class="nav-items" :key="index">
+                        <a 
+                        class="nav-link" 
+                        aria-current="page" 
+                        :href="page.link.url"
+                        :title="`This link goes to the ${page.link.text} page`"
+                        >{{ page.link.text }}</a>
+                    </li>
+                </ul>
+            </div>
+        </nav> 
+        <div id="content" class="container">
+            <h1>{{ pageTitle }}</h1>
+            <p>{{ subTitle }} </p>
+        </div>
+        <script>
+
+            Vue.createApp({
+                data(){
+                    return {
+
+                        pages: [
+                            {
+                                link: {text: 'Home', url: "home.html"},
+                                pageTitle: "HomePage",
+                                subTitle: "This is our Home page."
+                            },
+                            {
+                                link: {text: 'About', url: 'about.html'},
+                                pageTitle: "About",
+                                subTitle: "This is our About page."
+                            },
+                            {
+                                link: {text: 'Contact', url: "contact.html"},
+                                pageTitle: "HomePage",
+                                subTitle: "This is our Contact page."
+                            },
+
+                        ]
+                    };
+                }
+            }).mount('body')
+
+        </script>
+    </body>
+</html>
