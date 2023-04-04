@@ -11,9 +11,12 @@ API_KEY = ''
 #API_KEY = open('API_KEY.txt', 'r').read()
 map_client = googlemaps.Client(API_KEY)
 
-location = () # enter the user's address here
-search_string = 'restaurant' # change the search string according to user's input
-distance = miles_to_meters() # ask the user's for the distance they want to find
+# enter the user's address here
+location = () 
+# change the search string according to user's input
+search_string = 'restaurant' 
+# ask the user's for the distance they want to find
+distance = miles_to_meters() 
 restaurant_list =[]
 
 response = map_client.places_nearby(

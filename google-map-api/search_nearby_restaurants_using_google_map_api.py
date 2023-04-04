@@ -14,18 +14,27 @@ def miles_to_meters(miles):
 # Generated an API Key from Google Cloud Platform and utilized it
 # My personal API Key is used in this project
 
-API_KEY = open('GOOGLEMAPS_API_KEY.txt','r').read()
+# API_KEY = open('GOOGLEMAPS_API_KEY.txt','r').read()
+# Change this line to your appropriate address on the computer that store the Google Map API Key
+API_KEY = "AIzaSyAMgS1oh6PP1J_bsM4NDHYyGg9V3WalHqI" 
+#This key belongs to Du Nguyen
 map_client = googlemaps.Client(API_KEY)
 
 # Input values before running the code
-address = '' # User input value for an address
+# User input value for an address
+address = "2600 Clifton Ave, Cincinnati, OH 45221"
 
-search_location = 'restaurant'# User input value for the type of nearby location 
+# User input value for the type of nearby location 
+search_location = 'restaurant'
 
-output_file_name = 'restaurant_list'# The name of the output Excel file
+# The name of the output Excel file
+output_file_name = 'restaurant_list'
 
-distance = miles_to_meters(2) # User input value for how far it is from the address to the locations
-# the default input is 2 miles 
+# User input value for how far it is from the address to the locations
+# The default input is 2 miles 
+perimeter = int(input("Enter the how far it is to travel from the address: "))
+distance = miles_to_meters(perimeter) 
+
 locations_list = []
 
 geocode = map_client.geocode(address=address)
