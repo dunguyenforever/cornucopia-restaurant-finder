@@ -1,0 +1,31 @@
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: #ffffff;
+}
+
+h1 {
+    font-family: 'GFS Didot', serif;
+    text-align: center;
+    font-size: 2 rem;
+    padding: 0 3 rem;
+}
+
+#map {
+    height: 60vh;
+}
+
+/* Changing the text of the info window for the standing_marker to black*/
+.gm-style {
+    color: black;
+}
