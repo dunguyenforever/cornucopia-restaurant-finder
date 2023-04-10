@@ -253,6 +253,267 @@ void generatePreflist()
     }
 }
 
+class Graph
+{
+private:
+    // Declaring the necessary variables
+    int num_vertex;
+    bool** adjMatrix;
+    vector<GraphNode *> Adjlist;
+    vector<int> visited;    // visited nodes
+    vector<int> Parents;    // parents nodes of visited nodes
+    vector<int> input_list; // the graph's copy of the user's input
+
+public:
+    // Graph constructor
+    Graph(vector<int> user_input)
+    {
+        int i = 0;
+        input_list.clear();
+
+        // copying the user's input list
+        while (user_input[i] != -1)
+        {
+            this->input_list.push_back(user_input[i]);
+            i++;
+        }
+        // putting end point into the list
+        input_list.push_back(-1);
+
+        // Grabing V from input list
+        num_vertex = input_list[0];
+        i = 0;
+        // initializing all the necessary values
+        for (i; i < num_vertex; i++)
+        {
+            visited.push_back(0);
+            Parents.push_back(-1);
+            Adjlist.push_back(new GraphNode(i));
+        }
+
+        // Initialize all the arrays of the graph class
+        Initialize_cond();
+        getAdjacencyMatrix();
+        // Adding the inputed edge as pairs
+        i = 1;
+        while (input_list[i] != -1)
+        {
+            addEdge(input_list[i], input_list[i + 1]);
+            i += 2;
+        }
+    }
+
+    // Graph destructor
+    ~Graph()
+    {
+        GraphNode *edge = new GraphNode;
+        GraphNode *temp = new GraphNode;
+        for (int i = 0; i < num_vertex; i++)
+        {
+            edge = Adjlist[i];
+            while (edge != NULL)
+            {
+                temp = edge;
+                edge = edge->next;
+                delete temp;
+                temp = NULL;
+            }
+        }
+        Adjlist.clear();
+    }
+
+    // A function to initialize all the conditions for visit and neighbours
+    void Initialize_cond()
+    {
+        int i = 0;
+        for (i; i < num_vertex; i++)
+        {
+            visited[i] = 0;
+            Parents[i] = -1;
+        }
+    }
+
+    void getAdjacencyMatrix()
+    {
+
+        adjMatrix = new bool*[num_vertex];
+        for (int i = 0; i < num_vertex; i++) {
+            adjMatrix[i] = new bool[num_vertex];
+            for (int j = 0; j < num_vertex; j++)
+                adjMatrix[i][j] = false;
+        }
+
+    }
+    
+    void addMatrixEdge(int i, int j) 
+    {
+        adjMatrix[i][j] = true;
+        adjMatrix[j][i] = true;
+    }
+      
+
+    // Function to add edge to the graph
+    void addEdge(int begin, int end)
+    {
+        addMatrixEdge(begin, end);
+        GraphNode *newEdge = new GraphNode(end); // Header node
+        newEdge->next = Adjlist[begin];          // Adjacency list
+        if(Adjlist[begin] == NULL)
+            Adjlist[begin] = newEdge;
+        else
+        {
+            while(Adjlist[begin]->next != NULL)
+                Adjlist[begin] = Adjlist[begin]->next;
+            Adjlist[begin] = newEdge;
+        }
+        //Adjlist[begin] = newEdge;
+
+
+        newEdge = new GraphNode(begin);
+        newEdge->next = Adjlist[end];
+        if(Adjlist[end] == NULL)
+            Adjlist[end] = newEdge;
+        else
+        {
+            while(Adjlist[end]->next != NULL)
+                Adjlist[end] = Adjlist[end]->next;
+            Adjlist[end] = newEdge;
+        }
+        //Adjlist[end] = newEdge;
+
+    }
+
+    void printMatrix(){
+    cout << "    ";
+    for(int k = 0; k < num_vertex; k++)
+        cout << k << " ";
+    cout <<"\n";
+    for (int i = 0; i < num_vertex; i++) {
+      cout << i << " : ";
+      for (int j = 0; j < num_vertex; j++)
+        cout << adjMatrix[i][j] << " ";
+      cout << "\n";
+    }
+  }
+
+    // Function to remove an edge from the graph (unfinished)
+    void removeEdge(int begin, int end)
+    {
+    }
+
+    // Printing the Graph by vertices and their respective edges
+    void printGraph()
+    {
+        GraphNode *curr_edge = new GraphNode;
+        for (int v = 0; v < num_vertex; v++)
+        {
+            cout << "Vertex: " << v << endl;
+            curr_edge = Adjlist[v];
+            cout << v << "->";
+            while (curr_edge->next != NULL)
+            {
+                cout << curr_edge->key << "->";
+                curr_edge = curr_edge->next;
+            }
+            cout << endl;
+        }
+    }
+
+    // Depth first search function
+    // DFS is similar to BFS with the difference being the order in which vertices are explored
+    // main difference is that DFS uses a stack instead of a queue
+    // is solved iteratively
+
+    vector<int> DFS(int start_v)
+    {
+        stack<int> vert_stack; // Vertex stack to keep track of visited nodes
+        vector<int> output;    // output the set of connected vertices
+        GraphNode *temp = new GraphNode;
+        Initialize_cond();
+        int flag; // Variable to check for disconnected vertex
+        visited[start_v] = 1;
+        vert_stack.push(start_v);
+
+        while (!vert_stack.empty())
+        {
+            flag = 0;
+            temp = Adjlist[start_v];
+            while (temp->next != NULL)
+            {
+                if (visited[temp->key] == 0)
+                {
+
+                    visited[temp->key] = 1; // Marking the vertex as visited so we don't go in a loop
+                    vert_stack.push(temp->key);
+                    output.push_back(temp->key); // Outputting it into return array
+                    start_v = temp->key;
+                    flag = 1;
+                    break;
+                }
+
+                temp = temp->next;
+            }
+
+            // Edge case for isolated vertex
+            if (!vert_stack.empty() && flag == 0)
+            {
+                start_v = vert_stack.top();
+                vert_stack.pop();
+            }
+        }
+
+        /*for (int k = 0; k < num_vertex; k++)
+        {
+            if(visited[k] != 1)
+            {
+                temp = Adjlist[k];
+                if(visited[temp->key] == 1)
+                {
+                    output.push_back(k);
+                }
+            }
+        }*/
+
+        return output;
+    }
+
+    void printDFSset(int user_input)
+    {
+        vector<int> print_output = DFS(user_input);
+        cout << "The DFS result for " << user_input << " is: \n"
+             << user_input << " -> ";
+        for (int i = 0; i < num_vertex - 1; i++)
+            cout << print_output[i] << " -> ";
+        cout << endl;
+    }
+
+    // Function to compute all the
+    vector<vector<int>> Components()
+    {
+        vector<vector<int>> vertex_sets;
+        int i = 0;
+        cout << "{";
+        // Creating the sets of all connected vertices per vertex
+        for (i; i < num_vertex; i++)
+        {
+            vertex_sets.push_back(DFS(i));
+        }
+
+        i = 0;
+        // Outputting the result
+        for (i; i < num_vertex; i++)
+        {
+            cout << "{" << i << "->";
+            for (int j = 0; j < vertex_sets[i].size(); j++)
+            {
+                cout << vertex_sets[i][j] << "->";
+            }
+            cout << "}, ";
+        }
+        cout << "}\n";
+        return vertex_sets;
+    }
+};
 
 
 int main()
