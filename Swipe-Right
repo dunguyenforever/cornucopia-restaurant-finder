@@ -1,0 +1,15 @@
+function swipeRight(element, callback) {
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  element.addEventListener('touchstart', function(event) {
+    touchStartX = event.touches[0].clientX;
+  });
+
+  element.addEventListener('touchend', function(event) {
+    touchEndX = event.changedTouches[0].clientX;
+    if (touchEndX > touchStartX) {
+      callback();
+    }
+  });
+}
