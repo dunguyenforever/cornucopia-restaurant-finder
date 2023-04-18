@@ -48,4 +48,6 @@ public:
 private:
     std::vector<T> items_;  // The elements in the stack
     int size_;              // The number of elements in the stack
+
 };
+

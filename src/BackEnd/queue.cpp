@@ -93,3 +93,4 @@ queue<T> :: ~queue()
 {
 	delete []data;
 }
+
