@@ -97,8 +97,52 @@ class Graph
             }
 
         }
+    
 
 };
+
+
+const int INF = numeric_limits<int>::max(); // "Infinity" value
+
+// Graph edge class
+class Edge {
+public:
+    int to, weight;
+
+    Edge(int to, int weight) {
+        this->to = to;
+        this->weight = weight;
+    }
+};
+
+// Dijkstra's algorithm function
+vector<int> dijkstra(vector<vector<Edge>>& graph, int start) {
+    vector<int> dist(graph.size(), INF); // Distance from start to each node
+    dist[start] = 0; // Distance from start to itself is 0
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // Priority queue of nodes to visit
+    pq.push(make_pair(0, start)); // Add start node to queue with distance 0
+
+    while (!pq.empty()) {
+        pair<int, int> top = pq.top();
+        pq.pop();
+        int u = top.second;
+        int d = top.first;
+        if (d > dist[u]) {
+            continue; // Skip this node if its distance has already been updated
+        }
+        for (Edge e : graph[u]) {
+            int v = e.to;
+            int alt = dist[u] + e.weight;
+            if (alt < dist[v]) {
+                dist[v] = alt; // Update distance to this node if it is shorter than the current distance
+                pq.push(make_pair(dist[v], v)); // Add this node to the queue
+            }
+        }
+    }
+
+    return dist;
+}
 
 
 
