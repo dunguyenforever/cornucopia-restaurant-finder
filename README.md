@@ -2,7 +2,7 @@
 ## Product Proposal
 ### Vision 
 
-+ Our restaurant finder/generator website will be using a database comprises of restaurants information and reviews from Google and Yelp to recommend to a customer where they would like to eat. 
++ Our restaurant finder/generator website will be using a database comprises of restaurants information and reviews from Google and Yelp to recommend to customers where they would like to eat. 
 
 + Our targeted audience and user personas that we aim at are **customers looking for a restaurant to eat** and the **restaurant owners** in **Cincinnati**.
 
