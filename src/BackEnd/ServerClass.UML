@@ -1,0 +1,35 @@
+    +--------------------------+
+    |      Resturant           |
+    +--------------------------+
+    |   - reviewStar           |
+    |   - menu                 |
+    |   - matches              |
+    +--------------------------+
+    |   + rate(amount)         |
+    |   + takematches(Customer |
+    |   + getMenu()            |
+    +--------------------------+
+
+    +-------------------------+
+    |      Customer           |
+    +-------------------------+
+    |   - name                |
+    |   - preference          |
+    |   - userID              |
+    +-------------------------+
+    |   + getName()           |
+    |   + getPreference()     |
+    |   + getUserID()         |
+    |   + setPreference()     |
+    |   + setUserID()         |
+    +-------------------------+
+
+    +---------------------+
+    |      Distance        |
+    +---------------------+
+    |   - travelTime       |
+    |   - numRest          |
+    +---------------------+
+    |   + gettravelTime()  |
+    |   + getnumRest()        |
+    +---------------------+
